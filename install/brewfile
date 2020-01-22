@@ -1,0 +1,56 @@
+############################################################################
+# tap
+############################################################################
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "homebrew/cask-versions"
+
+############################################################################
+# brew
+############################################################################
+brew "apache-activemq"
+brew "autoconf"
+brew "automake"
+brew "awscli"
+brew "cmake"
+brew "coreutils" # for awesome commands like timeout
+brew "curl"
+brew "diff-so-fancy"
+brew "ffmpeg"
+brew "flac"
+brew "flake8"
+brew "gcc"
+brew "git"
+brew "git-open"
+brew "grep"
+brew "heroku"
+brew "heroku/brew/heroku"
+brew "htop"
+brew "httpie"
+brew "mackup"
+brew "magic-wormhole"
+brew "nmap"
+brew "node"
+brew "openssh"
+brew "oath-toolkit"
+brew "pipenv"
+brew "python"
+brew "python@2"
+brew "ruby" # for Vim command-t plugin to work
+brew "tldr"
+brew "tmux"
+brew "tree"
+brew "vim"
+brew "wget"
+brew "yarn"
+
+
+############################################################################
+# brew packages which needs java
+############################################################################
+brew "dependency-check"
+brew "maven"

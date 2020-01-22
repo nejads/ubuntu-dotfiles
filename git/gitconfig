@@ -1,0 +1,53 @@
+############################################################################
+# Git settings
+############################################################################
+[core]
+        editor = vim
+		excludesfile = ~/.gitignore_global
+[alias]
+
+	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+	# View the current working tree status using the short format
+	s = status -s
+
+	# Pull in remote changes for the current repository and all its submodules
+	p = git pull --recurse-submodules
+
+	# Switch to a branch, creating it if necessary
+	go = "!f() { git checkout -b \"$1\" &> /dev/null || git checkout \"$1\"; }; f"
+
+	# Undo your last commit
+	undo-commit = "reset --soft HEAD~1"
+
+############################################################################
+# diff-so-fancy settings
+############################################################################
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+############################################################################
+# Other settings
+############################################################################
+[core]
+	autocrlf = input  # bit.ly/2RLLxed
+[user]
+	name = Soroush Nejad
+	email =
