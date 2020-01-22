@@ -138,7 +138,7 @@ function clone_dotfiles_repo() {
     else
         url=https://github.com/nejads/ubuntu-dotfiles.git
         if git clone "$url" $DOTFILES_REPO && \
-           git -C $DOTFILES_REPO remote set-url origin git@github.com:nejads/dotfiles.git; then
+           git -C $DOTFILES_REPO remote set-url origin git@github.com:nejads/ubuntu-dotfiles.git; then
             success "Dotfiles repository cloned into ${DOTFILES_REPO}"
         else
             error "Dotfiles repository cloning failed"
