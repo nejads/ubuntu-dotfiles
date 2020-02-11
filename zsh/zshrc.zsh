@@ -10,7 +10,7 @@ ZSH_THEME="robbyrussell"
 
 ZSH_CUSTOM=$DOTFILES
 
-plugins=(git)
+plugins=(git aws)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,7 +33,7 @@ alias c="clear"
 alias reload="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -ahlF --color --group-directories-first"
-alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
+alias lock='gnome-screensaver-command -l'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias totp="sh ~/dotfiles/scripts/totp.sh"
 alias totp-add-token="sh ~/dotfiles/scripts/totp-add-token.sh"
@@ -58,8 +58,8 @@ alias pcheck="egrep 'listen|port' /usr/local/var/postgres/postgresql.conf"
 alias mci='mvn clean install'
 
 # Java aliases
-alias 8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`'
-alias 11='export JAVA_HOME=`/usr/libexec/java_home -v 11`'
+# alias 8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`'
+# alias 11='export JAVA_HOME=`/usr/libexec/java_home -v 11`'
 
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
@@ -97,6 +97,7 @@ alias resolve="git add . && git commit --no-edit"
 alias glog="git log --oneline --decorate --color --graph"
 alias gnuke="git clean -df && git reset --hard"
 alias gprev="git checkout -"
+alias gpp="git push origin HEAD:refs/for/master"
 
 # Remove local branches that does not have remote any longer.
 alias gbpurge="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -d"
@@ -150,3 +151,7 @@ function myip() {
     echo "Your public ip: "
     curl ipinfo.io
 }
+
+# Remote hosts
+alias tchost="ssh ec2-user@52.50.29.67 -i ~/workspace/TrustCenter/infra/TrustCenter.pem"
+

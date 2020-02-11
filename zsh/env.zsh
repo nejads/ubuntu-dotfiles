@@ -16,3 +16,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 # the symlinked brew Ruby executable
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# java 
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-amazon-corretto"

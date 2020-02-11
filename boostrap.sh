@@ -35,17 +35,22 @@ main() {
     setup_vim
     # Setting up tmux
     setup_tmux
-    # Setting up Vim
-    setup_vim
 }
 
 function update() {
     if wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &> /dev/null; then
         success "Google GPG key updated"
-        if sudo apt-get update -qqy &> /dev/null; then
-            success "update succeeded"
+        if wget -q -O - https://apt.corretto.aws/corretto.key | sudo apt-key add - &> /dev/null; then
+            sudo add-apt-repository 'deb https://apt.corretto.aws stable main' &> /dev/null
+            success "Corretto key updated"
+            if sudo apt-get update -qqy &> /dev/null; then
+                success "update succeeded"
+            else
+                error "update failed"
+                exit 1
+            fi
         else
-            error "update failed"
+            error "Update faild for corretto key"
             exit 1
         fi
     else
@@ -165,9 +170,9 @@ function install_homebrew_formulae_from_file() {
 function change_default_shell_to_zsh() {
     user=$(whoami)
     if sudo chsh -s /bin/zsh "$user"; then
-        success "Zsh shell successfully set for \"${user}\""
+        success "zsh shell successfully set for \"${user}\""
     else
-        error "Please try setting Zsh shell again"
+        error "Please try setting zsh shell again"
     fi
 }
 
@@ -205,7 +210,7 @@ function install_npm_packages() {
             grep --ignore-case "$package_to_install" &> /dev/null; then
             substep "\"${package_to_install}\" already exists"
         else
-            if sudo npm install -g "$package_to_install"; then
+            if sudo npm install -g "$package_to_install" &> /dev/null; then
                 substep "Package \"${package_to_install}\" installation succeeded"
             else
                 error "Package \"${package_to_install}\" installation failed"
